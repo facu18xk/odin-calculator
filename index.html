@@ -6,42 +6,46 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Simple Calculator</title>
     <link rel="stylesheet" href="./styles.css">
-    <script src="./main.js" defer></script>
+    <script src="./scripts/main.js" type="module" defer></script>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@600&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap" rel="stylesheet">
 </head>
 
 <body>
     <div class="calculator">
         <div class="screen">
+
             <div class="screen--lastOperation">
-                <p>12+12</p>
+
+                <p class="carry"></p>
             </div>
             <div class="screen--currentOperation">
-                32
+                <input type="number" placeholder="0" class="input" autofocus>
+                </p>
             </div>
+
         </div>
         <div class="buttons">
-            <div class="button">C</div>
-            <div class="button">÷</div>
-            <div class="button">×</div>
-            <div class="button">CE</div>
+            <div class="button left-upper">C</div>
             <div class="button">7</div>
-            <div class="button">8</div>
-            <div class="button">9</div>
-            <div class="button">-</div>
             <div class="button">4</div>
-            <div class="button">5</div>
-            <div class="button">6</div>
-            <div class="button">+</div>
             <div class="button">1</div>
+            <div class="button left-lower">%</div>
+            <div class="button">÷</div>
+            <div class="button">8</div>
+            <div class="button">5</div>
             <div class="button">2</div>
-            <div class="button">3</div>
-            <div class="button">%</div>
             <div class="button">0</div>
+            <div class="button">×</div>
+            <div class="button">9</div>
+            <div class="button">6</div>
+            <div class="button">3</div>
             <div class="button">.</div>
-            <div class="button equal">=</div>
+            <div class="button right-upper">CE</div>
+            <div class="button">-</div>
+            <div class="button">+</div>
+            <div class="button equal right-lower">=</div>
         </div>
     </div>
 </body>
