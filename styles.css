@@ -38,7 +38,7 @@ body {
     width: 100%;
     height: 80%;
     display: flex;
-    justify-content: center;
+    justify-content: flex-start;
     align-items: center;
     flex-wrap: wrap;
     gap: 2px;
@@ -48,6 +48,7 @@ body {
 
 .button {
     height: 20%;
+    max-width: 87.625px;
     display: flex;
     justify-content: center;
     align-items: center;
@@ -55,4 +56,9 @@ body {
     flex: 1 1 24%;
     font-weight: 600;
     font-size: 1.4rem;
+}
+
+.equal {
+
+    align-self: stretch;
 }
