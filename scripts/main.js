@@ -100,3 +100,5 @@ buttons.addEventListener('click', (ev) => {
 input.addEventListener('input', () => {
     input.value = input.value.replace(/[^0-9.]/g, '').replace(/(\..*?)\..*/g, '$1');
 })
+//Disable selecting the button 
+//onmousedown = "return false" onselectstart = "return false"
