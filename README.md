@@ -23,4 +23,4 @@ The calculator should have the following abilities:
 7. Prevent issues caused by pressing "=" before entering all numbers or an operator
 8. Display a snarky error message if the user tries to divide by 0
    
-Demo -> 
+[Demo][https://facu18xk.github.io/calculator/]
