@@ -3,11 +3,11 @@ import { calculate } from "./arithmetic.js";
 const buttons = document.querySelector('.buttons');
 const carry = document.querySelector('.carry');
 const input = document.querySelector('.input');
-let dataEntered = { numbers: [], operators: [] };
 let lastEntered = "";
+let lastResult = "";
+let resultInScreen = false;
 input.value = "";
 carry.innerText = "";
-
 const showInCarry = data => carry.innerText += data;
 const showInInput = number => input.value += number;
 const clearCarry = () => carry.innerText = "";
@@ -27,7 +27,6 @@ const PROCEDURES = {
  * Parse the data into the input into an array of numbers and operators
  * @returns obj 
  */
-// 12 + 12
 function parseData() {
     const numbers = [];
     const operators = [];
@@ -40,11 +39,10 @@ function parseData() {
             const strNumber = data.slice(lastStart, index);
             operators.push(el);
             numbers.push(parseFloat(strNumber));
-            lastStart = index;
+            lastStart = index + 1;
         }
         if (index === char.length - 1) {
-            console.log("Hello");
-            const strNumber = data.slice(lastStart + 1, char.length);
+            const strNumber = data.slice(lastStart, char.length);
             numbers.push(parseFloat(strNumber));
         }
     });
@@ -54,13 +52,16 @@ function parseData() {
  * Do the operation and show in the screen 
  */
 function resolve() {
+    if (input.value == "") return;
     // If the last entered data is not a number send alert
     if (isNaN(parseFloat(lastEntered))) alert("Enter a correct value");
     clearCarry()
     showInCarry(input.value);
     clearInput();
-    showInInput(calculate(parseData()));
-    dataEntered = { numbers: [], operators: [] };
+    const result = calculate(parseData());
+    if (typeof result == "boolean") return alert("Division by 0 is undefined");
+    else showInInput(result);
+    resultInScreen = true;
 }
 
 function inputOperator(operator) {
@@ -70,26 +71,31 @@ function inputOperator(operator) {
         input.value += operator;
     }
 }
-
 buttons.addEventListener('click', (ev) => {
     const buttonValue = ev.target.textContent;
-    console.log(ev);
     if (buttonValue in PROCEDURES) {
         PROCEDURES[buttonValue]();
     }
     else {
         //If the value is a operator, verify that the previous value is a number otherwise throw an alert 
         if (isNaN(parseFloat(buttonValue))) {
+            if (resultInScreen) {
+                clearCarry();
+                resultInScreen = false;
+            }
             inputOperator(buttonValue);
             lastEntered = buttonValue;
         }
         else {
+            if (resultInScreen) {
+                clearInput();
+                resultInScreen = false;
+            }
             input.value += buttonValue;
             lastEntered = buttonValue;
         }
     }
 })
-
 //Allow only numbers and .
 input.addEventListener('input', () => {
     input.value = input.value.replace(/[^0-9.]/g, '').replace(/(\..*?)\..*/g, '$1');

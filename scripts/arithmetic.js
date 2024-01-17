@@ -57,5 +57,8 @@ export function calculate(enteredValue) {
         numbers.splice(index, 2, result);
         operationsCount++;
     });
-    return numbers[0];
+    const result = numbers[0];
+    if (result === Infinity) return false;
+    if (result.toString().length > 11) return Math.round(result * 1000) / 1000;
+    return result;
 }
