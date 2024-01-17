@@ -4,7 +4,6 @@ const buttons = document.querySelector('.buttons');
 const carry = document.querySelector('.carry');
 const input = document.querySelector('.input');
 let lastEntered = "";
-let lastResult = "";
 let resultInScreen = false;
 input.value = "";
 carry.innerText = "";
